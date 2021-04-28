@@ -11,29 +11,47 @@ class NinjaCard extends StatefulWidget {
   _NinjaCardState createState() => _NinjaCardState();
 }
 
+List<String> digimonNames = [
+  'greymon',
+  'metalgreymon',
+  'wargreymon',
+  'garurumon',
+  'weregarurumon',
+  'metalgarurumon',
+  'stingmon',
+  'megaseadramon',
+  'valkyrimon',
+];
+
+var digimonLevels = {
+  'metalgarurumon' : 'mega',
+  'garurumon' : 'champion',
+  'weregarurumon' : 'ultimate',
+  'greymon' : 'champion',
+  'metalgreymon' : 'ultimate',
+  'valkyrimon' : 'mega',
+  'megaseadramon' : 'ultimate',
+  'stingmon' : 'champion',
+  'wargreymon' : 'mega',
+};
+
+var digimonTypes = {
+  'metalgarurumon' : 'Data',
+  'garurumon' : 'Data',
+  'weregarurumon' : 'Data',
+  'greymon' : 'Vaccine',
+  'metalgreymon' : 'Vaccine',
+  'valkyrimon' : 'Vaccine',
+  'megaseadramon' : 'Data',
+  'stingmon' : 'Data',
+  'wargreymon' : 'Vaccine',
+};
+
+
+
 class _NinjaCardState extends State<NinjaCard> {
-  // List<String> images = [
-  //   'images/metalgarurumon.png',
-  //   'images/garurumon.png',
-  //   'images/weregarurumon.png',
-  //   'images/greymon.png',
-  //   'images/metalgreymon.png',
-  //   'images/valkyrimon.png',
-  //   'images/megaseadramon.png',
-  //   'images/stingmon.png',
-  //   'images/wargreymon.png'
-  // ];
-  List<String> images = [
-    'metalgarurumon',
-    'garurumon',
-    'weregarurumon',
-    'greymon',
-    'metalgreymon',
-    'valkyrimon',
-    'megaseadramon',
-    'stingmon',
-    'wargreymon'
-  ];
+
+
   int imageIndex = 0;
   String currentImage = '';
 
@@ -41,7 +59,15 @@ class _NinjaCardState extends State<NinjaCard> {
 
   @override
   Widget build(BuildContext context) {
-    print(images);
+
+
+
+    // for (var i = 0; i < digimonLevels.length; i++) {
+    //   print(digimonLevels[digimonNames[i]]);
+    // }
+
+
+
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -64,7 +90,7 @@ class _NinjaCardState extends State<NinjaCard> {
           children: <Widget>[
             Center(
               child: Image.asset(
-                'images/' + images[imageIndex] + '.png',
+                'images/' + digimonNames[imageIndex] + '.png',
                 scale: 1.85,
               ),
             ),
@@ -81,7 +107,7 @@ class _NinjaCardState extends State<NinjaCard> {
             ),
             SizedBox(height: 10.0,),
             Text(
-                images[imageIndex].toUpperCase(),
+                digimonNames[imageIndex].toUpperCase(),
                 style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
@@ -99,7 +125,7 @@ class _NinjaCardState extends State<NinjaCard> {
             ),
             SizedBox(height: 10.0,),
             Text(
-                'Ultimate',
+                digimonLevels[digimonNames[imageIndex]].toString().toUpperCase(),
                 style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
@@ -116,7 +142,7 @@ class _NinjaCardState extends State<NinjaCard> {
                 ),
                 SizedBox(width: 10.0),
                 Text(
-                  'Vaccine-Type',
+                  digimonTypes[digimonNames[imageIndex]].toString() + '-Type',
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 18.0,
@@ -131,9 +157,9 @@ class _NinjaCardState extends State<NinjaCard> {
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           setState(() {
-            if (imageIndex == images.length-1) imageIndex = 0;
+            if (imageIndex == digimonNames.length-1) imageIndex = 0;
             else imageIndex++;
-            print(images[imageIndex]);
+            print(digimonNames[imageIndex]);
           });
         },
         backgroundColor: Colors.amberAccent,
