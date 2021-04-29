@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Digimon.dart';
 
 
 
@@ -11,41 +12,56 @@ class NinjaCard extends StatefulWidget {
   _NinjaCardState createState() => _NinjaCardState();
 }
 
-List<String> digimonNames = [
-  'greymon',
-  'metalgreymon',
-  'wargreymon',
-  'garurumon',
-  'weregarurumon',
-  'metalgarurumon',
-  'stingmon',
-  'megaseadramon',
-  'valkyrimon',
+List<Digimon> mons = [
+  Digimon(name: 'metalgarurumon', level: 'mega', type: 'Data'),
+  Digimon(name: 'garurumon', level: 'champion', type: 'Data'),
+  Digimon(name: 'weregarurumon', level: 'ultimate', type: 'Data'),
+  Digimon(name: 'greymon', level: 'champion', type: 'Vaccine'),
+  Digimon(name: 'metalgreymon', level: 'ultimate', type: 'Vaccine'),
+  Digimon(name: 'valkyrimon', level: 'mega', type: 'Vaccine'),
+  Digimon(name: 'megaseadramon', level: 'ultimate', type: 'Data'),
+  Digimon(name: 'stingmon', level: 'champion', type: 'Data'),
+  Digimon(name: 'wargreymon', level: 'mega', type: 'Vaccine'),
 ];
 
-var digimonLevels = {
-  'metalgarurumon' : 'mega',
-  'garurumon' : 'champion',
-  'weregarurumon' : 'ultimate',
-  'greymon' : 'champion',
-  'metalgreymon' : 'ultimate',
-  'valkyrimon' : 'mega',
-  'megaseadramon' : 'ultimate',
-  'stingmon' : 'champion',
-  'wargreymon' : 'mega',
-};
 
-var digimonTypes = {
-  'metalgarurumon' : 'Data',
-  'garurumon' : 'Data',
-  'weregarurumon' : 'Data',
-  'greymon' : 'Vaccine',
-  'metalgreymon' : 'Vaccine',
-  'valkyrimon' : 'Vaccine',
-  'megaseadramon' : 'Data',
-  'stingmon' : 'Data',
-  'wargreymon' : 'Vaccine',
-};
+
+//
+// List<String> digimonNames = [
+//   'greymon',
+//   'metalgreymon',
+//   'wargreymon',
+//   'garurumon',
+//   'weregarurumon',
+//   'metalgarurumon',
+//   'stingmon',
+//   'megaseadramon',
+//   'valkyrimon',
+// ];
+//
+// var digimonLevels = {
+//   'metalgarurumon' : 'mega',
+//   'garurumon' : 'champion',
+//   'weregarurumon' : 'ultimate',
+//   'greymon' : 'champion',
+//   'metalgreymon' : 'ultimate',
+//   'valkyrimon' : 'mega',
+//   'megaseadramon' : 'ultimate',
+//   'stingmon' : 'champion',
+//   'wargreymon' : 'mega',
+// };
+//
+// var digimonTypes = {
+//   'metalgarurumon' : 'Data',
+//   'garurumon' : 'Data',
+//   'weregarurumon' : 'Data',
+//   'greymon' : 'Vaccine',
+//   'metalgreymon' : 'Vaccine',
+//   'valkyrimon' : 'Vaccine',
+//   'megaseadramon' : 'Data',
+//   'stingmon' : 'Data',
+//   'wargreymon' : 'Vaccine',
+// };
 
 
 
@@ -90,7 +106,7 @@ class _NinjaCardState extends State<NinjaCard> {
           children: <Widget>[
             Center(
               child: Image.asset(
-                'images/' + digimonNames[imageIndex] + '.png',
+                'images/${mons[imageIndex].name}.png',
                 scale: 1.85,
               ),
             ),
@@ -107,7 +123,7 @@ class _NinjaCardState extends State<NinjaCard> {
             ),
             SizedBox(height: 10.0,),
             Text(
-                digimonNames[imageIndex].toUpperCase(),
+                mons[imageIndex].name.toUpperCase(),
                 style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
@@ -125,7 +141,7 @@ class _NinjaCardState extends State<NinjaCard> {
             ),
             SizedBox(height: 10.0,),
             Text(
-                digimonLevels[digimonNames[imageIndex]].toString().toUpperCase(),
+                mons[imageIndex].level.toUpperCase(),
                 style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
@@ -142,7 +158,7 @@ class _NinjaCardState extends State<NinjaCard> {
                 ),
                 SizedBox(width: 10.0),
                 Text(
-                  digimonTypes[digimonNames[imageIndex]].toString() + '-Type',
+                  '${mons[imageIndex].type.toUpperCase()}-Type',
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 18.0,
@@ -157,9 +173,8 @@ class _NinjaCardState extends State<NinjaCard> {
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           setState(() {
-            if (imageIndex == digimonNames.length-1) imageIndex = 0;
+            if (imageIndex == mons.length-1) imageIndex = 0;
             else imageIndex++;
-            print(digimonNames[imageIndex]);
           });
         },
         backgroundColor: Colors.amberAccent,
